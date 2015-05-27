@@ -10,7 +10,7 @@ import com.citytechinc.cq.component.annotations.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component(value = "Breadcrumb", group = ComponentConstants.GROUP_HIDDEN)
+@Component(value = "TopNav", group = ComponentConstants.GROUP_HIDDEN)
 public class TopNav extends AbstractComponent {
 
     public String getBrandHref() {

@@ -18,9 +18,16 @@
 
     <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <c:forEach items="${topNav.topNavLinks}" var="nav">
+                <c:choose>
+                    <c:when test="${nav.active}">
+                        <li ><a class="active" href="${nav.href}">${nav.title}</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li ><a href="${nav.href}">${nav.title}</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
         </ul>
     </div>
 </nav>
