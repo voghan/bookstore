@@ -1,0 +1,13 @@
+#Perform build
+mvn clean install
+
+SERVER NEEDS TO BE RUNNING 
+
+#Perform build of dependancies and deploy to server
+mvn clean install -P autoInstallDependencies
+
+#Perform build of content and deploy to server
+mvn clean install -P autoInstallConfig
+
+#Perform build and deploy code from config, content and bundle modules
+mvn clean install -P autoInstallPackage

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- ====================================================================== -->
+    <!-- P A R E N T P R O J E C T D E S C R I P T I O N -->
+    <!-- ====================================================================== -->
+    <parent>
+        <groupId>bookstore</groupId>
+        <artifactId>bookstore</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- ====================================================================== -->
+    <!-- P R O J E C T D E S C R I P T I O N -->
+    <!-- ====================================================================== -->
+
+    <artifactId>dependencies</artifactId>
+    <packaging>content-package</packaging>
+    <name>bookstore Dependency Package</name>
+
+    <properties>
+        <dirPath>${project.build.directory}/${project.artifactId}-${project.version}/jcr_root</dirPath>
+    </properties>
+
+    <build>
+        <sourceDirectory>src/assembly</sourceDirectory>
+
+        <resources>
+            <resource>
+                <directory>${dirPath}</directory>
+                <excludes>
+                    <exclude>**/.vlt</exclude>
+                    <exclude>**/.vltignore</exclude>
+                    <exclude>**/.DS_Store</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>src/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <includeEmptyDirs>true</includeEmptyDirs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <group>bookstore</group>
+                    <filters>
+                        <filter>
+                            <root>${appsPath}-dependencies</root>
+                        </filter>
+                    </filters>
+                    <targetURL>http://${crx.host}:${crx.port}/crx/packmgr/service.jsp</targetURL>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- PLEASE READ: When adding a dependency to this list, please copy and
+         paste the new dependency into the bundle project pom file, if
+         it does not already exist. For short, keep the two dependency lists in sync. -->
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <!-- CityTech Bedrock -->
+        <dependency>
+            <groupId>com.citytechinc.aem.bedrock</groupId>
+            <artifactId>bedrock-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.citytechinc.aem.bedrock</groupId>
+            <artifactId>bedrock-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.citytechinc.aem.bedrock</groupId>
+            <artifactId>bedrock-ui</artifactId>
+            <type>zip</type>
+        </dependency>
+
+        <!-- Component Annotation -->
+        <dependency>
+            <groupId>com.citytechinc.cq.cq-component-plugin</groupId>
+            <artifactId>cq-component-annotations</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>autoInstallDependencies</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.day.jcr.vault</groupId>
+                        <artifactId>content-package-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>install-content-package</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>install</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>
