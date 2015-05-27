@@ -20,7 +20,7 @@ public class Author extends Base {
         return componentNode.get("authorName", "");
     }
 
-    public String getImageSource() {
+    public String getAuthorImage() {
         return componentNode.getImageSource().or("#");
     }
 
