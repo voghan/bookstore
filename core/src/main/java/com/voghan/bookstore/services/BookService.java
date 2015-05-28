@@ -9,4 +9,6 @@ import java.util.List;
 public interface BookService {
 
     List<Book> findBooks(List<Tag> tags, ResourceResolver resourceResolver);
+
+    List<Book> search(String keyword, List<Tag> tags, ResourceResolver resourceResolver);
 }

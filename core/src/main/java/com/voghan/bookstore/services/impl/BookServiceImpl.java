@@ -59,4 +59,46 @@ public class BookServiceImpl implements BookService {
 
         return books;
     }
+
+    public List<Book> search(String keyword, List<Tag> tags, ResourceResolver resourceResolver) {
+        List<Book> books = new ArrayList<Book>();
+
+        StringBuilder query = new StringBuilder();
+        query.append("SELECT * FROM [nt:unstructured] AS s")
+                .append(" WHERE ISDESCENDANTNODE([/content/bookstore/en/books])")
+                .append(" AND [sling:resourceType] = '" + BookDetail.RESOURCE_TYPE + "'");
+
+        if (keyword != null && !keyword.isEmpty()) {
+            query.append("and contains(s.*, '")
+                    .append(keyword)
+                    .append("')");
+        }
+
+        if (!tags.isEmpty()) {
+
+            query.append(" AND (");
+            String condition = "";
+            for (Tag tag : tags) {
+                query.append(" " + condition + "[cq:tags] = '" + tag.getTagID() + "'");
+                condition = "OR";
+            }
+            query.append(")");
+
+        }
+
+
+        LOG.info(query.toString());
+
+        Iterator<Resource> it = resourceResolver.findResources(query.toString(), Query.JCR_SQL2);
+
+        while (it.hasNext()) {
+            Resource resource = it.next();
+            Book book = resource.adaptTo(Book.class);
+            if (book != null) {
+                books.add(book);
+            }
+        }
+
+        return books;
+    }
 }

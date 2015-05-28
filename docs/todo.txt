@@ -1,14 +1,22 @@
 Done - TopNav
-Done - Book Detail
-Done - Author Detail
+
+Done - Author Detail Component
+
 Done - Author Domain
 Done - Author Adapter
 Done - Author Service
-Done - Author List
+Done - Author List Component
+
+Done - Book Detail Component
+
 Done - Book Domain
 Done - Book Adapter
 Done - Book Service
-Done - Book List
-Search Books
-Location detail
-Location List
+Done - Book List Component
+
+Search Servlet
+Search Books Component
+Search Books JS
+
+Location detail Component
+Location List Component
