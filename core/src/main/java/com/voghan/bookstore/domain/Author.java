@@ -5,8 +5,6 @@ import org.apache.sling.api.resource.Resource;
 
 public class Author extends Base {
 
-    private String name;
-
     private ComponentNode componentNode;
 
     public Author(Object o) {

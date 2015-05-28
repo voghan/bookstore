@@ -1,0 +1,14 @@
+Done - TopNav
+Done - Book Detail
+Done - Author Detail
+Done - Author Domain
+Done - Author Adapter
+Done - Author Service
+Done - Author List
+Done - Book Domain
+Done - Book Adapter
+Done - Book Service
+Done - Book List
+Search Books
+Location detail
+Location List

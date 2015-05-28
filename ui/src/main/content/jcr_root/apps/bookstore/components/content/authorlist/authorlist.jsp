@@ -17,7 +17,7 @@
                     <img src="${author.authorImage}" class="img-responsive">
                 </div>
                 <div class="author-detail">
-                    ${author.authorName}
+                    <a href="${author.href}">${author.authorName}</a>
                 </div>
             </div>
         </c:forEach>

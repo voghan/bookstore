@@ -73,10 +73,10 @@ public class BookDetail extends AbstractComponent {
         return getAsList("authorTags", String.class);
     }
 
-    @DialogField(fieldLabel = "Genre Tags", ranking = 4)
+    @DialogField(fieldLabel = "Genre Tags", ranking = 4, name = "./cq:tags")
     @TagInputField
     public List<String> getGenreTags() {
-        return getAsList("genreTags", String.class);
+        return getAsList("cq:tags", String.class);
     }
 
     @DialogField(fieldLabel = "Taggable", name = "./jcr:mixinTypes", defaultValue = "cq:Taggable")
