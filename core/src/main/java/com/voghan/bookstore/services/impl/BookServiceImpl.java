@@ -38,7 +38,7 @@ public class BookServiceImpl implements BookService {
             String condition = "";
             for (Tag tag : tags) {
                 query.append(" " + condition + "[cq:tags] = '" + tag.getTagID() + "'");
-                condition = "OR";
+                condition = " OR ";
             }
             query.append(")");
 
@@ -74,13 +74,15 @@ public class BookServiceImpl implements BookService {
                     .append("')");
         }
 
+        LOG.info("... tags:" + tags.size());
         if (!tags.isEmpty()) {
 
             query.append(" AND (");
             String condition = "";
             for (Tag tag : tags) {
+                LOG.info("... append tag " + tag.getTagID());
                 query.append(" " + condition + "[cq:tags] = '" + tag.getTagID() + "'");
-                condition = "OR";
+                condition = " OR ";
             }
             query.append(")");
 

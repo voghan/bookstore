@@ -15,11 +15,11 @@ var booksSearch = {
     search: function (form) {
     	var that = this;
 
+    	var values = $(form).serialize();
+        console.log(values);
+
     	//Empty the results list
     	$('.book-results-list').empty();
-
-		var values = $(this).serialize();
-        console.log(values);
 
 		$.ajax({
 		      url: "/bin/books/search",
@@ -43,7 +43,6 @@ var booksSearch = {
 
         	template.find('[data-selector="bookTitle"]').text(book.bookTitle);
         	template.find('[data-selector="bookAuthor"]').text(book.bookAuthors[0].authorName);
-        	console.log(book);
         	template.find('.results-book_url').attr('href',book.href);
             template.appendTo('.book-results-list');
         });

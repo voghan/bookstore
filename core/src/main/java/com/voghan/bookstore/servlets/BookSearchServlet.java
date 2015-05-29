@@ -33,6 +33,8 @@ public class BookSearchServlet extends AbstractJsonResponseServlet {
                 searchKeyword = request.getRequestParameter("searchKeyword").getString();
             }
             RequestParameter[] tags = request.getRequestParameters("tags[]");
+
+            LOG.info("...number of tags:" + tags.length);
             List<Tag> searchTags = new ArrayList<Tag>();
 
             TagManager tagManager = request.getResourceResolver().adaptTo(TagManager.class);
@@ -48,7 +50,8 @@ public class BookSearchServlet extends AbstractJsonResponseServlet {
 
             }
 
-            List<Book> books = bookService.findBooks(searchTags, request.getResourceResolver());
+            LOG.info("...number of searchTags:" + searchTags.size());
+            List<Book> books = bookService.search(searchKeyword, searchTags, request.getResourceResolver());
             writeJsonResponse(response, books);
 
         } catch (Exception e) {

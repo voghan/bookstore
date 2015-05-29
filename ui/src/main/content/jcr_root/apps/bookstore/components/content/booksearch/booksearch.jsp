@@ -9,7 +9,7 @@
             <fieldset id="tags">
                 <c:forEach items="${search.formTags}" var="tag">
                     <label>${tag.title}</label>
-                    <input type="checkbox" name="${tag.title}" value="${tag.tagID}" />
+                    <input type="checkbox" name="tags[]" value="${tag.tagID}" />
                 </c:forEach>
             </fieldset>
         </c:if>
