@@ -14,9 +14,10 @@ Done - Book Adapter
 Done - Book Service
 Done - Book List Component
 
-Search Servlet
-Search Books Component
-Search Books JS
+Done - Search Servlet
+Done - Search Books Component
+Done - Search Books JS
 
 Location detail Component
 Location List Component
+Location JS

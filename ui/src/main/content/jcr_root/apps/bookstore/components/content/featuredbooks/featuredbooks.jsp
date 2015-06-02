@@ -7,6 +7,6 @@
         <img src="${featurebooks.featureImage1}">
     </div>
     <div class="author-image">
-        <img src="{featurebooks.featureImage2}">
+        <img src="${featurebooks.featureImage2}">
     </div>
 </div>
